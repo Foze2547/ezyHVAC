@@ -50,7 +50,9 @@ interface VentHeaderItem {
   zincAmount: string;
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_MEASURE_URL = import.meta.env.PROD
+  ? '/api/proxy?path=/api/measure-image'                      // บน Vercel → ผ่าน proxy
+  : `${import.meta.env.VITE_API_BASE_URL}/api/measure-image`; // ตอนรัน dev ที่ localhost
 
 const ImageCalculator = () => {
   const { lang } = useLanguage();
@@ -337,7 +339,7 @@ const ImageCalculator = () => {
         const meters = unitMode === 'ip' ? (refVal) : refVal;
         form.append('ref_length_m', String(meters));
       }
-      const resp = await fetch(`${API_BASE_URL}/api/measure-image`, {
+      const resp = await fetch(API_MEASURE_URL, {
         method: 'POST',
         body: form,
       });
