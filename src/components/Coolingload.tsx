@@ -1962,7 +1962,7 @@ useEffect(() => {
                                         <DialogContent className="sm:max-w-[850px]">
 
                                             <h3 className="text-lg font-semibold">Beam Optical Depth (τb)</h3>
-                                            <img src={/tb.png} alt="Beam Optical Depth (τb)" className=" w-full" />
+                                            <img src={"/tb.png"} alt="Beam Optical Depth (τb)" className=" w-full" />
                                         </DialogContent>
                                     </Dialog></div>
                                 <Input id="taub" placeholder={t.taubPlaceholder} value={formData.locationInfo.taub} onChange={e => handleInputChange('locationInfo', 'taub', e.target.value)} />
@@ -1976,7 +1976,7 @@ useEffect(() => {
                                         </DialogTrigger>
                                         <DialogContent className="sm:max-w-[850px]">
                                             <h3 className="text-lg font-semibold">Diffuse Optical Depth (τd)</h3>
-                                            <img src={/td.png} alt="Diffuse Optical Depth" className=" w-full" />
+                                            <img src={"/td.png"} alt="Diffuse Optical Depth" className=" w-full" />
                                         </DialogContent>
                                     </Dialog></div>
                                 <Input id="taud" placeholder={t.taudPlaceholder} value={formData.locationInfo.taud} onChange={e => handleInputChange('locationInfo', 'taud', e.target.value)} />
@@ -2163,7 +2163,7 @@ useEffect(() => {
                                                 <DialogContent className="sm:max-w-[700px]">
 
                                                     <h3 className="text-lg font-semibold">Windows U-Factor(W/m²·K)</h3>
-                                                    <img src={/Ufactor.png} alt="Windows U-Factor Diagram" className=" w-full" />
+                                                    <img src={"/Ufactor.png"} alt="Windows U-Factor Diagram" className=" w-full" />
                                                 </DialogContent>
                                             </Dialog>
 
