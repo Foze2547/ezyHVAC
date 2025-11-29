@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import LanguageToggle from "../contexts/LanguageToggle";
 import { useLanguage } from "../contexts/LanguageContext";
 import VisitorCounter from './VisitorCounter';
-import Logo from '/ezyHVAC.png';
 import EzyPipeCal from './Ezypipe';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "./ui/sheet";
 
@@ -49,7 +48,7 @@ const Header = () => {
             <div className="flex items-center">
               <div className="flex-shrink-0 mr-4">
                 <img
-                  src={Logo}
+                  src="/ezyHVAC.png"
                   alt="University of Phayao"
                   className="mt-2 w-16 h-16 object-contain transition-transform duration-300 hover:scale-105"
                 />
