@@ -1,0 +1,14 @@
+image: atlassian/default-image:latest
+
+pipelines:          
+  branches:
+    main:
+      - step:
+          name: Deploy to Production
+          script:
+            - pipe: atlassian/ssh-run:0.8.1
+              variables:
+                  SSH_USER: root
+                  SERVER: $SERVER_PROD
+                  PORT: '22'
+                  COMMAND: bash /home/deploy_script/deploy-ezyhvac-web.sh

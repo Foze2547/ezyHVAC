@@ -1,0 +1,28 @@
+stages:
+  - deploy
+
+variables:
+  SSH_USER: "root"
+  SSH_PORT: "22"
+  DEPLOY_SCRIPT_PATH: "/home/deploy_script/deploy-ezyhvac-web.sh"
+
+deploy-production:
+  stage: deploy
+  image: debian:13-slim
+  before_script:
+    # Install SSH client
+    - apt update && apt install -y openssh-client 
+    # Setup SSH key for authentication
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    # Disable strict host key checking
+    - echo "Host *" >> ~/.ssh/config
+    - echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+    - echo "  UserKnownHostsFile /dev/null" >> ~/.ssh/config
+    - chmod 600 ~/.ssh/config
+  script:
+    - "ssh -i ~/.ssh/id_ed25519 -p $SSH_PORT $SSH_USER@$SERVER_PROD \"bash -lc '$DEPLOY_SCRIPT_PATH'\""
+    - echo "Deployment successfully!"
+  only:
+    - main

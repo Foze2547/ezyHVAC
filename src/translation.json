@@ -1,0 +1,32 @@
+{
+  "header": {
+    "title": "Energy Consumption Tool",
+    "subtitle": "Calculate and compare seasonal energy consumption and SEER of air conditioners based on real operating conditions."
+  },
+  "nav": {
+    "calculation": "Calculation",
+    "comparison": "Comparison",
+    "upload": "Upload",
+    "document": "Document"
+  },
+  "languageSwitcher": {
+    "english": "English",
+    "thai": "Thai"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "remove": "Remove",
+    "calculate": "Calculate",
+    "clear": "Clear",
+    "processing": "Processing...",
+    "selectOption": "Select an option"
+  }
+}
