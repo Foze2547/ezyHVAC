@@ -1,44 +1,37 @@
+// api/proxy.js
 export default async function handler(req, res) {
-  const API_BASE = process.env.EXTERNAL_API_BASE || 'https://api.ezyhvac.com';
-  // remove the /api/proxy prefix to forward the rest path/qs
-  const path = req.url.replace(/^\/api\/proxy/, '') || '/';
-  const target = `${API_BASE}${path}`;
+  const baseUrl = process.env.EXTERNAL_API_BASE || 'https://api.ezyhvac.com';
 
-  // read raw body for non-GET
-  const getRawBody = () =>
-    new Promise((resolve, reject) => {
-      let data = '';
-      req.on('data', chunk => (data += chunk));
-      req.on('end', () => resolve(data));
-      req.on('error', reject);
-    });
+  const { path = '' } = req.query; // เช่น /v1/xxx
+  const targetUrl = baseUrl + path;
 
   try {
-    const headers = { ...req.headers };
-    delete headers.host;
-    delete headers.origin; // avoid sending original origin to upstream
-
-    // inject API key if needed
-    if (process.env.EXTERNAL_API_KEY) {
-      headers['authorization'] = `Bearer ${process.env.EXTERNAL_API_KEY}`;
-    }
-
-    const response = await fetch(target, {
+    const response = await fetch(targetUrl, {
       method: req.method,
-      headers,
-      body: ['GET', 'HEAD'].includes(req.method) ? undefined : await getRawBody()
-    });
-
-    // copy response headers (except hop-by-hop)
-    response.headers.forEach((v, k) => {
-      if (!['transfer-encoding', 'connection'].includes(k.toLowerCase())) {
-        res.setHeader(k, v);
-      }
+      headers: {
+        // ดึง header ที่สำคัญไปต่อให้
+        'Content-Type': req.headers['content-type'] || 'application/json',
+        // ถ้ามี key แบบ Bearer ก็ใส่ใน env ชื่อ EXTERNAL_API_KEY ได้
+        ...(process.env.EXTERNAL_API_KEY
+          ? { Authorization: `Bearer ${process.env.EXTERNAL_API_KEY}` }
+          : {}),
+      },
+      body:
+        req.method === 'GET' || req.method === 'HEAD'
+          ? undefined
+          : JSON.stringify(req.body),
     });
 
     const text = await response.text();
-    res.status(response.status).send(text);
+
+    res.status(response.status);
+    res.setHeader(
+      'Content-Type',
+      response.headers.get('content-type') || 'application/json'
+    );
+    res.send(text);
   } catch (err) {
-    res.status(500).json({ error: 'proxy_error', message: String(err) });
+    console.error(err);
+    res.status(500).json({ error: 'Proxy request failed' });
   }
 }
