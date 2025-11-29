@@ -9,11 +9,9 @@ import { useLanguage } from '../contexts/LanguageContext';
 import html2pdf from 'html2pdf.js';
 import * as XLSX from 'xlsx';
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-// Public assets should not be imported via relative path from `public/`.
-// Use absolute URLs that point to the `public/` root (served at `/`).
-const Ufactor = '/Ufactor.png';
-const tb = '/tb.png';
-const td = '/td.png';
+import Ufactor from '../../public/Ufactor.png';
+import tb from '../../public/tb.png';
+import td from '../../public/td.png';
 
 import {
   Tooltip,
