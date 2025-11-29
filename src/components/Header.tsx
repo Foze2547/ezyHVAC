@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LanguageToggle from "../contexts/LanguageToggle";
 import { useLanguage } from "../contexts/LanguageContext";
 import VisitorCounter from './VisitorCounter';
-import Logo from '../../public/ezyHVAC.png';
+import Logo from "@/assets/ezyHVAC.png";
 import EzyPipeCal from './Ezypipe';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "./ui/sheet";
 
