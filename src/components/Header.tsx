@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import LanguageToggle from "../contexts/LanguageToggle";
 import { useLanguage } from "../contexts/LanguageContext";
 import VisitorCounter from './VisitorCounter';
-import Logo from "../../public/ezyHVAC.png";
 import EzyPipeCal from './Ezypipe';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "./ui/sheet";
 
@@ -49,8 +48,8 @@ const Header = () => {
             <div className="flex items-center">
               <div className="flex-shrink-0 mr-4">
                 <img
-                  src={Logo}
-                  alt="University of Phayao"
+                  src="/ezyHVAC.png"
+                  alt="ezyHVAC logo"
                   className="mt-2 w-16 h-16 object-contain transition-transform duration-300 hover:scale-105"
                 />
               </div>
@@ -84,7 +83,7 @@ const Header = () => {
                 <SheetContent side="left" className="p-0 w-4/5 sm:max-w-sm overflow-y-auto pb-6">
                   <SheetHeader className="px-4 py-3 border-b">
                     <div className="flex items-center gap-3">
-                      <img src={Logo} alt="UP" className="w-10 h-10 object-contain" />
+                      <img src="/ezyHVAC.png" alt="ezyHVAC" className="w-10 h-10 object-contain" />
                       <div className="text-left">
                         <SheetTitle className="text-xl">{text[lang].title}</SheetTitle>
                         <p className="text-xs text-gray-500">{text[lang].desc}</p>
